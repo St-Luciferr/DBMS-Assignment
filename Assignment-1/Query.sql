@@ -324,3 +324,135 @@ WHERE
         WHERE
             avgs_salary.company_name = 'First Bank Corporation');
             
+            
+/*
+3. Consider the relational database of Figure 5. Give an expression in SQL for each of the
+following queries:
+*/
+
+/*
+3.a) Modify the database so that John now lives in Newtown.
+*/
+UPDATE tbl_employee 
+SET 
+    city = 'Newtown',
+    street = 'New Street'
+WHERE
+    employee_name = 'John';
+
+/* 
+check if the query worked or not by selecting data from employee table
+*/
+SELECT 
+    *
+FROM
+    tbl_employee
+WHERE
+    employee_name = 'John';
+    
+/*
+3.b) Give all employees of First Bank Corporation a 10 percent raise
+*/
+UPDATE tbl_works 
+SET 
+    salary = salary * 1.1
+WHERE
+    company_name = 'First Bank Corporation';
+    
+/* 
+check if the query worked or not by selecting data from works table
+*/
+SELECT 
+    *
+FROM
+    tbl_works
+WHERE
+    company_name = 'First Bank Corporation';
+    
+/*
+3.c) Give all managers of First Bank Corporation a 10 percent raise.
+*/
+UPDATE tbl_works 
+SET 
+    salary = salary * 1.1
+WHERE
+    employee_name = ANY (SELECT DISTINCT
+            manager_name
+        FROM
+            tbl_manages)
+        AND company_name = 'First Bank Corporation';
+        
+/*
+check if the query worked or not by selecting data from works table
+*/
+SELECT 
+    *
+FROM
+    tbl_works
+WHERE
+    company_name = 'First Bank Corporation';
+    
+    
+/*
+(d) Give all managers of First Bank Corporation a 10 percent raise unless the salary 
+becomes greater than $100,000; in such cases, give only a 3 percent raise
+*/
+UPDATE tbl_works 
+SET 
+    salary=if(salary<100000,salary * 1.1,salary*1.03)
+WHERE
+    employee_name = ANY (SELECT DISTINCT
+            manager_name
+        FROM
+            tbl_manages)
+        AND company_name = 'First Bank Corporation';
+/*
+check if the query worked or not by selecting data from works table
+this query only checks data for the employee of first bank corporation who are managers
+*/
+SELECT 
+    *
+FROM
+    tbl_works
+WHERE
+    company_name = 'First Bank Corporation'
+        AND employee_name = ANY (SELECT DISTINCT
+            manager_name
+        FROM
+            tbl_manages);
+            
+/*
+3.e) Delete all tuples in the works relation for employees of Small Bank Corporation.
+*/
+
+-- Before deleting data from table with relation we should disable foreign key check
+SET foreign_key_checks = 0;
+
+-- now eun the query to delete the data
+DELETE tbl_works , tbl_employee , tbl_manages FROM tbl_works
+        JOIN
+    tbl_employee ON tbl_employee.employee_name = tbl_works.employee_name
+        JOIN
+    tbl_manages ON tbl_works.employee_name = tbl_manages.employee_name 
+WHERE
+    tbl_works.company_name = 'Small Bank Corporation';
+
+-- now enable the foreign key check after deletion
+SET foreign_key_checks = 1;
+
+
+-- check if the data was deleted or not
+SELECT 
+    tbl_works.employee_name,
+    tbl_works.company_name,
+    tbl_works.salary,
+    tbl_employee.street,
+    tbl_employee.city,
+    tbl_manages.manager_name
+FROM
+    tbl_works
+        INNER JOIN
+    tbl_employee ON tbl_employee.employee_name = tbl_works.employee_name
+        INNER JOIN
+    tbl_manages ON tbl_works.employee_name = tbl_manages.employee_name;
+
