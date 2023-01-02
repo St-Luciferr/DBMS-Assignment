@@ -1,4 +1,4 @@
-## Tutorial-1k
+## Tutorial-1
 ---
 **SQL schema definition for the employee database is as:**
 
