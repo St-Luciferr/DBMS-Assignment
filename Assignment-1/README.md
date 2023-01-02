@@ -77,7 +77,7 @@ manages (employee-name, manager-name)
         FROM
             tbl_employee;
         ```
-        ![Employee table](./images/tbl_employee.PNG "Employee Table")
+        ![Employee table](./images/tbl_employee.PNG "Employee Table")<br>
         *Fig: Employee Table*
 
 * Insert Data in Company table:
@@ -98,7 +98,7 @@ manages (employee-name, manager-name)
         FROM
             tbl_company;
         ```
-        ![Company Table](./images/tbl_company.PNG)
+        ![Company Table](./images/tbl_company.PNG)<br>
         *Fig: Company Table*
 
 * Insert Data into Work Table
@@ -124,7 +124,7 @@ manages (employee-name, manager-name)
         FROM
             tbl_works;
         ```
-        ![Works Table](./images/tbl_works.PNG)
+        ![Works Table](./images/tbl_works.PNG)<br>
         *Fig: Works Table*
 
 * Insert data into manages table
@@ -145,7 +145,7 @@ manages (employee-name, manager-name)
         FROM
             tbl_manages;
         ```
-        ![Manages Table](./images/tbl_manages.PNG)
+        ![Manages Table](./images/tbl_manages.PNG)<br>
         *Fig: Manages Table*
 #### 2. Consider the employee database of Figure 5, where the primary keys are underlined. Give an expression in SQL for each of the following queries:
 
@@ -160,7 +160,7 @@ manages (employee-name, manager-name)
             company_name = 'First Bank Corporation';
     ```
 * Output:
-    ![2.a](./images/2a.PNG)
+    ![2.a](./images/2a.PNG)<br>
 
 ##### 2.b) Find the names and cities of residence of all employees who work for First Bank Corporation.
 
@@ -195,8 +195,8 @@ manages (employee-name, manager-name)
     *Here, the **employee** table is joined with **works** table using **employee_name** as the common column and name and city of the employee working in **First Bank Corporation** is taken from the joined table.*
     <br>
 
-* Output:
-    ![2.b](./images/2b.PNG)
+* Output:<br>
+    ![2.b](./images/2b.PNG)<br>
 
 ##### 2.c) Find the names, street addresses, and cities of residence of all employees who work for First Bank Corporation and earn more than $10,000.
 
@@ -237,8 +237,8 @@ manages (employee-name, manager-name)
     *Here, the **employee** table is joined with **works** table using **employee_name** as the common column and name and city of the employee working in **First Bank Corporation** and having **salary > 10000** is taken from the joined table.*
     <br>
 
-* Output:
-    ![2.c](./images/2c.PNG)
+* Output:<br>
+    ![2.c](./images/2c.PNG)<br>
 
 ##### 2.d) Find all employees in the database who live in the same cities as the companies for which they work.
 
@@ -278,8 +278,8 @@ manages (employee-name, manager-name)
     ```
     *Here, the **employee** table is joined with **works** table using **employee_name** as the common column and again **company** table is joined with the joint table using **company_name** as common column then the **name** and **city** of employee which have same city as the company they work in are returned.*
     <br>
-* Output:
-    ![2.d](./images/2d.PNG)
+* Output:<br>
+    ![2.d](./images/2d.PNG)<br>
 
 
 ##### 2.e) Find all employees in the database who live in the same cities and on the same streets as do their managers.
@@ -335,8 +335,8 @@ manages (employee-name, manager-name)
     ```
     *Here, the **manages** table is joined with **employee** table twice. Once, on `Tbl_manages.employee_name = emp.employee_name` with alias **emp** and other on `Tbl_manages.manager_name = manager.employee_name` with alias **manager** for employee and manager respectively. Then the **city** and **street** of the joined table **emp** and **manager** are compared and the entries which have same values are returned.*
     <br>
-* Output:
-    ![2.e](./images/2e.PNG)
+* Output:<br>
+    ![2.e](./images/2e.PNG)<br>
 
 ##### 2.f) Find all employees in the database who do not work for First Bank Corporation.
 * Query:
@@ -348,8 +348,8 @@ manages (employee-name, manager-name)
     WHERE
         tbl_works.company_name != 'First Bank Corporation';
     ```
-* Output:
-    ![2.f](./images/2f.PNG)
+* Output:<br>
+    ![2.f](./images/2f.PNG)<br>
 
 ##### 2.h) Assume that the companies may be located in several cities. Find all companies located in every city in which Small Bank Corporation is located.
 * Query:
@@ -368,8 +368,8 @@ manages (employee-name, manager-name)
     ```
     *Here, sub query returns the city of the company **Small Bank Corporation** then, we check for the company on same city as that and the matching entries are returned.*
     <br>
-* Output:
-    ![2.h](./images/2h.PNG)
+* Output:<br>
+![2.h](./images/2h.PNG)<br>
 
 ##### 2.i) Find all employees who earn more than the average salary of all employees of their company.
 * Query:
@@ -390,8 +390,8 @@ manages (employee-name, manager-name)
     *Here, we have created a **derived table** containing **company name** and **average salary** with alias of table as **avg_salary** and joined it with **works** table on `avg_salary.company_name = tbl_works.company_name` then the entries having more **salary** then **average salary** of their company were returned from the joint table.*
     <br>
 
-* Output:
-    ![2.i](./images/2i.PNG)    
+* Output:<br>
+    ![2.i](./images/2i.PNG)  <br>  
 
 ##### 2.j) Find the company that has the most employees.
 * Query:
@@ -409,8 +409,8 @@ manages (employee-name, manager-name)
     ```
     *Here, a **derived table** with **company name** and **count of employee** is created from **work** table and **sorted in descending order** of employee count i.e. company with maximum employee at the begining. Then the first entry is returned which is the company with most employees.*
     <br>
-* Output:
-    ![2.j](./images/2j.PNG)
+* Output:<br>
+    ![2.j](./images/2j.PNG)<br>
 
 ##### 2.k) Find the company that has the smallest payroll.
 * Query:
@@ -428,8 +428,8 @@ manages (employee-name, manager-name)
     ```
     *This is similar to 2.j but instead of **employee count** we created derived table with **total payroll(salary)** and arranged in ascending order then, returned the first entry.*
     <br>
-* Output:
-    ![2.k](./images/2k.PNG)
+* Output:<br>
+    ![2.k](./images/2k.PNG)<br>
 
 ##### 2.l) Find those companies whose employees earn a higher salary, on average, than the average salary at First Bank Corporation.
 * Query:
@@ -456,6 +456,8 @@ manages (employee-name, manager-name)
     ```
     *Here we create a derived table with **company name** and **average salary** which we used to get the average salary of **First Bank Corporation** and compare it with **average salary** of other companies and the entries with more average salary than First Bank Corporation were returned.*
     >*Here the same sub query is used twice because mysql doesn't allow the use of alias of derived table inside another select sub query.*
+* Output:<br>
+    ![2.l](./images/2l.PNG)<br>
 
 <br>
 #### 3. Consider the relational database of Figure 5. Give an expression in SQL for each of the following queries:
@@ -478,7 +480,7 @@ manages (employee-name, manager-name)
         WHERE
             employee_name = 'Jones';
         ```
-    * Output:
+    * Output:<br>
         ![3.a](./images/3a.PNG)
 
 ##### 3.b) Give all employees of First Bank Corporation a 10 percent raise
@@ -499,12 +501,12 @@ manages (employee-name, manager-name)
         WHERE
             company_name = 'First Bank Corporation';
         ```
-    * Output:
-        *Before raise:*
-        ![before](./images/tbl_works.PNG)
+    * Output:<br>
+        *Before raise:*<br>
+        ![before](./images/tbl_works.PNG)<br>
 
-        *After raise:*
-        ![3.b](./images/3b.PNG)
+        *After raise:*<br>
+        ![3.b](./images/3b.PNG)<br>
         >we've only selected the updated entries to show.
 ##### 3.c) Give all managers of First Bank Corporation a 10 percent raise.
 * Using sub query:
@@ -542,11 +544,11 @@ manages (employee-name, manager-name)
     WHERE
         company_name = 'First Bank Corporation';
     ```
-    * Output:
-    *Before raise for managers:*
-    ![before raise](./images/3b.PNG)
-    *After raise for managers:*
-    ![after raise](./images/3c.PNG)
+    * Output:<br>
+    *Before raise for managers:*<br>
+    ![before raise](./images/3b.PNG)<br>
+    *After raise for managers:*<br>
+    ![after raise](./images/3c.PNG)<br>
 
 
 
@@ -595,6 +597,8 @@ manages (employee-name, manager-name)
             FROM
                 tbl_manages);
     ```
+    * Output:<br>
+    ![3.e](./images/3d.PNG)<br>
 ##### 3.e) Delete all tuples in the works relation for employees of Small Bank Corporation.
 * Query:
     * Before deleting data from table with relation we should disable foreign key check.
@@ -635,6 +639,6 @@ manages (employee-name, manager-name)
         ```
         *We are joining the **works**, **employee** and **manages** table so that we can see if the data has been delete from all three or not.* 
         <br>
-    * Output:
-        ![3.e](./images/3e.PNG)
+    * Output:<br>
+        ![3.e](./images/3e.PNG)<br>
         *We can see that the employee of **Small Bank Corporation** have been removed.*
