@@ -159,7 +159,7 @@ manages (employee-name, manager-name)
         WHERE
             company_name = 'First Bank Corporation';
     ```
-* Output:
+* Output:<br>
     ![2.a](./images/2a.PNG)<br>
 
 ##### 2.b) Find the names and cities of residence of all employees who work for First Bank Corporation.
