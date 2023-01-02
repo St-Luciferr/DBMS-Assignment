@@ -60,7 +60,12 @@ VALUES ('Alice','Old Street','Old Town'),
        ('Einstein Karki', 'New chowk', 'New town'),
        ('Newton Neupane', 'Old chowk', 'Old Town'),
        ('Jones','Old Street','Old Town');
-	
+UPDATE tbl_employee 
+SET 
+    street = 'Chandor Chowk',
+    city = 'Lalitpur'
+WHERE
+    employee_name = 'Newton Neupane';
 -- View data in employee table      
 SELECT 
     *
@@ -296,7 +301,7 @@ Corporation
 2.h) Assume that the companies may be located in several cities. Find all companies located
 in every city in which Small Bank Corporation is located.
 */
--- using sub query
+
 SELECT 
     *
 FROM
