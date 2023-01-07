@@ -1,4 +1,4 @@
-##Tutorial-1k
+## Tutorial-1
 ---
 **SQL schema definition for the employee database is as:**
 
@@ -610,7 +610,7 @@ manages (employee-name, manager-name)
         DELETE tbl_works , tbl_employee , tbl_manages FROM tbl_works
                 JOIN
             tbl_employee ON tbl_employee.employee_name = tbl_works.employee_name
-                JOIN
+                LEFT JOIN
             tbl_manages ON tbl_works.employee_name = tbl_manages.employee_name 
         WHERE
             tbl_works.company_name = 'Small Bank Corporation';
@@ -634,7 +634,7 @@ manages (employee-name, manager-name)
             tbl_works
                 INNER JOIN
             tbl_employee ON tbl_employee.employee_name = tbl_works.employee_name
-                INNER JOIN
+                LEFT JOIN
             tbl_manages ON tbl_works.employee_name = tbl_manages.employee_name;
         ```
         *We are joining the **works**, **employee** and **manages** table so that we can see if the data has been delete from all three or not.* 
