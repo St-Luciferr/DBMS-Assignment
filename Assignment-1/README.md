@@ -459,9 +459,12 @@ manages (employee-name, manager-name)
 * Output:<br>
     ![2.l](./images/2l.PNG)<br>
 
-<br>
+
+
 #### 3. Consider the relational database of Figure 5. Give an expression in SQL for each of the following queries:
-##### 3.a) Modify the database so that Jones now lives in Newtown.
+
+##### 3.a) Modify the database so that Jones now lives in Newtown.\
+
 * Query:
     ```sql
     UPDATE tbl_employee 
