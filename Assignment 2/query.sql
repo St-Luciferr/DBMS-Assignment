@@ -392,5 +392,24 @@ GROUP BY tbl_instructor.dept_name;
 4.6. Find the lowest, across all departments, of the per-department maximum salary 
 computed by the preceding query
 */
+SELECT 
+    max_table.dept_name, MIN(max_salary) as min_salary
+FROM
+    (SELECT 
+        tbl_instructor.dept_name,
+            MAX(tbl_instructor.salary) AS max_salary
+    FROM
+        tbl_instructor
+    GROUP BY tbl_instructor.dept_name)as max_table;
 
-
+/*
+4.7. Find the ID and names of all students who do not have an advisor
+*/
+SELECT 
+    tbl_student.id AS student_id, tbl_student.student_name
+FROM
+    tbl_student
+        LEFT JOIN
+    tbl_advisor ON tbl_student.id = tbl_advisor.s_id
+WHERE
+    tbl_advisor.i_id IS NULL;
